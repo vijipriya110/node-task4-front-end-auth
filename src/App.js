@@ -13,29 +13,34 @@ import { Redirect } from 'react-router-dom';
 import Teachers from './Components/Teachers.js';
 import AddTeachers from './Components/AddTeachers.js';
 import UpdateTeachers from './Components/UpdateTeachers.js';
+import LoginPage from './Components/LoginPage.js';
+import SignUp from './Components/SignUp.js';
+// import { useHistory } from 'react-router-dom';
 
 function App() {
   const [students, setStudents] = useState([]);
   const [teachers, setTeachers] = useState([]);
+  // const history = useHistory();
 
   useEffect(()=>{
     const getStudents = async () =>{
-        const response = await fetch("https://node-mongodb-task3.vercel.app/students/all", {
+        const response = await fetch(`https://node-task04-back-end.vercel.app/students/all`, {
           method:"GET",
+          headers : {
+            "x-auth-token" : localStorage.getItem("token")
+          }
         }); 
         const data = await response.json();
-        console.log(data)
-        if(data){
+        // console.log(data)
           setStudents(data.data)
         }
-    }
-    getStudents();
+        getStudents();   
     
   }, [] )
 
   useEffect(()=>{
     const getTeachers = async () =>{
-        const response = await fetch("https://node-mongodb-task3.vercel.app/mentors/all", {
+        const response = await fetch("https://node-task04-back-end.vercel.app/mentors/all", {
           method:"GET",
         }); 
         const data = await response.json();
@@ -102,9 +107,12 @@ function App() {
             />
          </Route>
 
-          {/* <Route path="**">
-              <Nopage/>
-          </Route> */}
+          <Route path="/login">
+              <LoginPage/>
+          </Route>
+          <Route path="/signup">
+              <SignUp/>
+          </Route>
 
        </Switch>
     </div>

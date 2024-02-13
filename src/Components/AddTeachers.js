@@ -46,7 +46,7 @@ const createTeacher = async (newTeachers) =>{
 //       gender: gender,
 // }
 
-const response = await fetch("https://node-mongodb-task3.vercel.app/mentors/add", {
+const response = await fetch("https://node-task04-back-end.vercel.app/mentors/add", {
   method:"POST",
   body:JSON.stringify(newTeachers),
   headers :{

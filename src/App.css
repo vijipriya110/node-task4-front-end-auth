@@ -125,6 +125,40 @@
  .title{
   text-align: left;
 }
+
+/* signup */
+.us-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* border: 1px solid black; */
+  /* margin: 10px 10px; */
+  padding: 5px 5px;
+}
+h3{
+  text-align: center;
+}
+.img{
+  /* border: 1px solid black; */
+  margin: 10px 10px;
+  padding: 5px 5px;
+  height: 0%;
+  /* width: 50%; */
+}
+.user{
+  /* border: 1px solid black; */
+  margin-top: 40px;
+  padding: 5px 5px;
+  height: 0%;
+  /* width: 50%; */
+}
+.input{
+  border-radius: 10px;
+  width: 200px;
+  background-color:  skyblue;
+  
+}
+
 @media only screen and (max-width:460px){
   button{
     font-size:xx-small;

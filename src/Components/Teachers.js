@@ -10,7 +10,7 @@ function Teachers({teachers, setTeachers}) {
     // delete functionality
     const deleteTeacher = async (teachId)=>{
       
-      const response = await fetch(`https://node-mongodb-task3.vercel.app/mentors/delete/${teachId}`, {
+      const response = await fetch(`https://node-task04-back-end.vercel.app/mentors/delete/${teachId}`, {
          method:"DELETE",
       });
 

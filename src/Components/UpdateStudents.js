@@ -17,7 +17,8 @@ const feildValidationShema = yup.object({
 function UpdateStudents({students, setStudents}) {
     const {id} = useParams();
     //  const editStudent = students[id]
-    const editStudent = students.find(stud => stud._id === id);
+    const stud = students.find(stud => stud._id === id);
+    // console.log(editStudent)
     // const [name, setName] = useState("")
     // const [batch, setBatch] = useState("")
     // const [gender, setGender] = useState("")
@@ -33,16 +34,16 @@ function UpdateStudents({students, setStudents}) {
 
     const {handleSubmit,handleChange,values,handleBlur,touched,errors} = useFormik({
       initialValues : {
-        name : (editStudent.name),
-        batch : (editStudent.batch),
-        gender : (editStudent.gender),
-        qualification : (editStudent.qualification),
+        name : (stud.name),
+        batch : (stud.batch),
+        gender : (stud.gender),
+        qualification : (stud.qualification),
   
       },
       validationSchema : feildValidationShema,
-      onSubmit : (editStudentData)=>{
-        console.log("onsubmit");
-        updateStudent(editStudentData);
+      onSubmit : (studData)=>{
+        // console.log("onsubmit");
+        updateStudent(studData);
       },
     })
 
@@ -54,21 +55,23 @@ function UpdateStudents({students, setStudents}) {
         //     gender: gender,
         //     qualification :qualification
         //  }
-     const response = await fetch(`https://node-mongodb-task3.vercel.app/students/edit/${editStudent.id}`, {
+     const response = await fetch(`https://node-task04-back-end.vercel.app/students/edit/${stud._id}`, {
       method:"PUT",
       body:JSON.stringify(updatedObject),
       headers:{
-        "Content-Type":"application/json"
+        "Content-Type":"application/json",
+        "x-auth-token" : localStorage.getItem("token")
       }
      })
 
      const data = await response.json()
+     console.log(data)
      const studIndex = students.findIndex((stud)=>stud._id === id);
      if(data){
          console.log(updatedObject)
-         students[studIndex] = updatedObject
+         students[studIndex] = updatedObject;
          setStudents([...students])
-         history.push("/students")
+         history.push("/students/all")
      }
     }
 

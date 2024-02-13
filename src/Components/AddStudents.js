@@ -55,15 +55,17 @@ const createStudent = async (newStudents) =>{
 //       gender: gender,
 // }
 
-const response = await fetch("https://node-mongodb-task3.vercel.app/students/add", {
+const response = await fetch("https://node-task04-back-end.vercel.app/students/add", {
   method:"POST",
   body:JSON.stringify(newStudents),
   headers :{
-    "Content-Type":"application/json"
+    "Content-Type":"application/json",
+    "x-auth-token" : localStorage.getItem("token")
   },
 })
 const data = await response.json()
-  setStudents([...students, data])
+console.log(data)
+  setStudents([...students, data.data])
   history.push("/students")
 }
 

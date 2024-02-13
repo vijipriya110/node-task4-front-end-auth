@@ -10,12 +10,16 @@ function Students({students, setStudents}) {
     // delete functionality
     const deleteStudent = async (studId)=>{
       
-      const response = await fetch(`https://node-mongodb-task3.vercel.app/students/delete/${studId}`, {
+      const response = await fetch(`https://node-task04-back-end.vercel.app/students/delete/${studId}`, {
          method:"DELETE",
+         headers:{
+          "x-auth-token" : localStorage.getItem("token")
+         }
+         
       });
 
       const data = await response.json()
-      console.log(data)
+      // console.log(data)
      if(data){
        const remainingStudents = 
        students.filter((stud, idx)=> stud._id !== studId)
