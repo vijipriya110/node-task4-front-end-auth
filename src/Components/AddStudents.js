@@ -55,7 +55,7 @@ const createStudent = async (newStudents) =>{
 //       gender: gender,
 // }
 
-const response = await fetch("https://node-task04-back-end.vercel.app/students/add", {
+const response = await fetch("https://node-task04-back-end-v67f.vercel.app/students/add", {
   method:"POST",
   body:JSON.stringify(newStudents),
   headers :{

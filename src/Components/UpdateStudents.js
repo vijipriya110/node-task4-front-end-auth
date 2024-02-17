@@ -55,7 +55,7 @@ function UpdateStudents({students, setStudents}) {
         //     gender: gender,
         //     qualification :qualification
         //  }
-     const response = await fetch(`https://node-task04-back-end.vercel.app/students/edit/${stud._id}`, {
+     const response = await fetch(`https://node-task04-back-end-v67f.vercel.app/students/edit/${stud._id}`, {
       method:"PUT",
       body:JSON.stringify(updatedObject),
       headers:{

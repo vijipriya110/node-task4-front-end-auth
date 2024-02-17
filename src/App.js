@@ -15,6 +15,7 @@ import AddTeachers from './Components/AddTeachers.js';
 import UpdateTeachers from './Components/UpdateTeachers.js';
 import LoginPage from './Components/LoginPage.js';
 import SignUp from './Components/SignUp.js';
+import Logout from './Components/Logout.js';
 // import { useHistory } from 'react-router-dom';
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
 
   useEffect(()=>{
     const getStudents = async () =>{
-        const response = await fetch(`https://node-task04-back-end.vercel.app/students/all`, {
+        const response = await fetch(`https://node-task04-back-end-v67f.vercel.app/students/all`, {
           method:"GET",
           headers : {
             "x-auth-token" : localStorage.getItem("token")
@@ -110,6 +111,10 @@ function App() {
           <Route path="/login">
               <LoginPage/>
           </Route>
+          <Route path="/logout">
+              <Logout/>
+          </Route>
+
           <Route path="/signup">
               <SignUp/>
           </Route>

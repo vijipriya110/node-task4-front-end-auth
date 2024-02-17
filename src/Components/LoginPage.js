@@ -23,6 +23,7 @@ function LoginPage() {
    const data = await res.json();
    
     localStorage.setItem("token", data.token)
+    // localStorage.removeItem("")
   //   console.log(data.token)
   //  console.log(userInfo)
     history.push("/students")

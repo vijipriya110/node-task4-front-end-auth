@@ -1,15 +1,40 @@
-import React,{} from "react";
-
-// import { Button } from "bootstrap";
+import React,{ useState } from "react";
 import Base from "../Base/Base";
+import { useHistory } from "react-router-dom";
 
 
 function SignUp(){
+  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const history = useHistory()
+
+
+  const handleSignup = async()=>{
+    const userInfo = {
+      username,
+      email,
+      password
+
+    }
+  const response = await fetch("https://node-task04-back-end.vercel.app/users/signup", {
+  method:"POST",
+  body:JSON.stringify(userInfo),
+  headers :{
+    "Content-Type":"application/json"
+  },
+})
+const data = await response.json()
+console.log(data)
+  // setTeachers([...teachers, data])
+  history.push("/login")
+
+  }
     
   return(
     <Base
-    title={"SignUp"}
-    discription={"SignUp page"}
+    title={"User Register"}
+    discription={"Here can register the users"}
     >
     <div className="App">
       <h3>WELCOME BACK..!</h3>
@@ -19,26 +44,32 @@ function SignUp(){
           <img src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7965.jpg?size=338&ext=jpg&ga=GA1.1.1546980028.1702944000&semt=ais" alt="Signup"/>
         </div>
         <div className="user">
-          <div>
-            <h4>Create An Account</h4>
-            <label for="name"><b>Firstname</b></label><br/>
-            <input type="text" name="Email" id="name"className="input" /><br/>
-            <label for="name"><b>Lastname</b></label><br/>
-            <input type="text" name="Email" id="name"className="input" /><br/>
-          <label for="Email"><b>Email</b></label><br/>
-          <input type="Email" name="Email" id="Email"className="input" placeholder="abc@gmail.com"/><br/>
-          <label for="Pass" ><b> Create Password</b></label><br/>
-          <input type="Password" name="Password" id="Pass" className="input" /><br/>
-          <label for="Pass" ><b> Re-Enter Password</b></label><br/>
-          <input type="Password" name="Password" id="Pass" className="input" /><br/><br/>
-          <button className="input"><b>Register</b></button><br/><br/>
+       <input
+        placeholder='Enter User Name'
+        type ="text"
+        value = {username}
+        onChange={(e)=>setUsername(e.target.value)}
+        /><br></br>
+        
+        <input
+        placeholder='Enter Email'
+        type ="email"
+        value = {email}
+        onChange={(e)=>setEmail(e.target.value)}
+        /><br></br>
 
-          
-          
-          <button>Already have an account? Login!</button>
-          </div>
-          
-        </div>
+<input
+        placeholder='Enter Password'
+        type ="password"
+        value = {password}
+        onChange={(e)=>setPassword(e.target.value)}
+        /><br></br>
+        
+        <button type='submit' onClick={handleSignup}>Register</button><br></br>
+
+        <button>Already have account?sing in</button><br/><br/>
+
+         </div>
 
       </div>
     </div>
