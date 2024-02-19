@@ -16,6 +16,10 @@ import UpdateTeachers from './Components/UpdateTeachers.js';
 import LoginPage from './Components/LoginPage.js';
 import SignUp from './Components/SignUp.js';
 import Logout from './Components/Logout.js';
+import ForgotPassword from './Components/ForgotPassword.js';
+import OTPInput from './Components/OTPInput.js';
+import Sendotp from './Sendotp.js';
+import ResetPassword from './Components/ResetPassword.js';
 // import { useHistory } from 'react-router-dom';
 
 function App() {
@@ -113,6 +117,13 @@ function App() {
           </Route>
           <Route path="/logout">
               <Logout/>
+          </Route>
+          <Route path="/forgotpassword">
+              <ForgotPassword/>
+          </Route>
+         
+          <Route path="/resetpassword">
+              <ResetPassword/>
           </Route>
 
           <Route path="/signup">
