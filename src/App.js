@@ -1,7 +1,6 @@
 
 import { Switch,Route } from 'react-router-dom';
 import './App.css';
-// import Base from './Base/Base'
 import Students from './Components/Students.js';
 import AddStudents from './Components/AddStudents';
 import UpdateStudents from './Components/UpdateStudents';
@@ -17,15 +16,16 @@ import LoginPage from './Components/LoginPage.js';
 import SignUp from './Components/SignUp.js';
 import Logout from './Components/Logout.js';
 import ForgotPassword from './Components/ForgotPassword.js';
-import OTPInput from './Components/OTPInput.js';
-import Sendotp from './Sendotp.js';
 import ResetPassword from './Components/ResetPassword.js';
-// import { useHistory } from 'react-router-dom';
+
 
 function App() {
   const [students, setStudents] = useState([]);
   const [teachers, setTeachers] = useState([]);
-  // const history = useHistory();
+  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
 
   useEffect(()=>{
     const getStudents = async () =>{
@@ -113,7 +113,12 @@ function App() {
          </Route>
 
           <Route path="/login">
-              <LoginPage/>
+              <LoginPage
+              email = {email}
+              setEmail = {setEmail}
+              password = {password}
+              setPassword = {setPassword}
+              />
           </Route>
           <Route path="/logout">
               <Logout/>
@@ -123,11 +128,25 @@ function App() {
           </Route>
          
           <Route path="/resetpassword">
-              <ResetPassword/>
+              <ResetPassword
+              email = {email}
+              setEmail = {setEmail}
+              password = {password}
+              setPassword = {setPassword}
+              confirmPassword={confirmPassword}
+              setConfirmPassword={setConfirmPassword}
+              />
           </Route>
 
           <Route path="/signup">
-              <SignUp/>
+              <SignUp
+              username={username}
+              setUsername={setUsername}
+              email={email}
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
+              />
           </Route>
 
        </Switch>

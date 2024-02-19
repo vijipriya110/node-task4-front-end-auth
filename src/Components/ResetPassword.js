@@ -1,14 +1,9 @@
-import React, { useState } from 'react'
-// import React, { useState } from 'react'
 import Base from '../Base/Base';
+import { useHistory } from 'react-router-dom';
 
-function ResetPassword() {
-
- const [email, setEmail] = useState("")
- const [password, setPassword] = useState("")
- const [confirmPassword, setConfirmPassword] = useState("")
-    
-//  const history = useHistory();
+function ResetPassword({email,setEmail,password,setPassword,confirmPassword,setConfirmPassword}) {
+  
+ const history = useHistory();
 
    const handleLogin = async()=>{
     const userInfo = {
@@ -27,13 +22,8 @@ function ResetPassword() {
    });
    const data = await res.json();
    console.log(data)
-   
-    // localStorage.setItem("token", data.token)
-    // localStorage.removeItem("")
-  //   console.log(data.token)
-  //  console.log(userInfo)
-    // history.push("/students")
-    
+   history.push("/login")
+        
    }
 
   return (
@@ -69,20 +59,13 @@ function ResetPassword() {
         onChange={(e)=>setConfirmPassword(e.target.value)}
         /><br></br>
         
-        <button type='submit' onClick={handleLogin}>Login</button><br></br>
-
-        {/* <button onClick={()=>history.push("/forgotpassword")}>Forget Password?</button><br/><br/> */}
+        <button type='submit' onClick={handleLogin}>Submit</button><br></br>
 
         </div>
         </div>
-
 
        </Base>
-        
-
-        
-       
-        
+      
     </div>
   )
 }

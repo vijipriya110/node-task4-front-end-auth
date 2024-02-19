@@ -1,14 +1,9 @@
-import React,{ useState } from "react";
 import Base from "../Base/Base";
 import { useHistory } from "react-router-dom";
 
 
-function SignUp(){
-  const [username, setUsername] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+function SignUp({email,setEmail,password,setPassword,username,setUsername}){
   const history = useHistory()
-
 
   const handleSignup = async()=>{
     const userInfo = {
@@ -67,7 +62,7 @@ console.log(data)
         
         <button type='submit' onClick={handleSignup}>Register</button><br></br>
 
-        <button>Already have account?sing in</button><br/><br/>
+        <button onClick={()=>history.push("/login")}>Already have account?sing in</button><br/><br/>
 
          </div>
 

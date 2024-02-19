@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
 import Base from '../Base/Base';
 import { useHistory } from 'react-router-dom';
 
-function LoginPage() {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+function LoginPage({email, setEmail, password, setPassword}) {
+    
     const history = useHistory();
 
    const handleLogin = async()=>{
