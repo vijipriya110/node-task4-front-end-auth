@@ -1,18 +1,10 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import Base from '../Base/Base'
 
 function ForgotPassword() {
-    
-  const [email, setEmail] = useState("")
-  const [page, setPage] = useState("login");
-  const [mail, setMail] = useState("");
-  const [otp, setOTP] = useState("");
-  
+   
   const history = useHistory()
-
-
   const sendResetCode = async()=>{
     const userInfo = {
       email
