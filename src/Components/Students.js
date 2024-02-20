@@ -1,8 +1,4 @@
-// import React, { useState } from 'react'
 import Base from '../Base/Base'
-// import data from '../Data/data'
-// import AddStudents from './AddStudents';
-// import UpdateStudents from './UpdateStudents';
 import { useHistory } from 'react-router-dom';
 
 function Students({students, setStudents}) {

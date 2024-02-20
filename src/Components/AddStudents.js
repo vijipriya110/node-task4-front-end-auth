@@ -11,12 +11,9 @@ const feildValidationShema = yup.object({
   gender : yup.string().required("please spcify the gender"),
   qualification : yup.string().required("please enter the qualification"),
 
-
 }) 
 
-
 function AddStudents({students, setStudents}) {
-
 
   const {handleSubmit,handleChange,values,handleBlur,touched,errors} = useFormik({
     initialValues : {
@@ -33,28 +30,10 @@ function AddStudents({students, setStudents}) {
     },
   })
 
-
-
-
-
-
   const history = useHistory()
-    // const [name, setName] = useState("")
-    // const [batch, setBatch] = useState("")
-    // const [gender, setGender] = useState("")
-    // const [qualification, setQualification] = useState("")
-
-
-
+    
 const createStudent = async (newStudents) =>{
-    // creating object from input states
-//     const newStudents = {
-//       name:name,
-//       batch:batch,s
-//       qualification:qualification,
-//       gender: gender,
-// }
-
+    
 const response = await fetch("https://node-task04-back-end-v67f.vercel.app/students/add", {
   method:"POST",
   body:JSON.stringify(newStudents),
@@ -67,6 +46,12 @@ const data = await response.json()
 console.log(data)
   setStudents([...students, data.data])
   history.push("/students")
+}
+if(!localStorage.getItem("token")){
+  
+  history.push("/login")
+}else{
+  history.push("/add")
 }
 
   return (

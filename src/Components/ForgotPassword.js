@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import Base from '../Base/Base'
 
-function ForgotPassword() {
+function ForgotPassword(email,setEmail) {
    
   const history = useHistory()
   const sendResetCode = async()=>{

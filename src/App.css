@@ -147,16 +147,28 @@ h3{
 }
 .user{
   /* border: 1px solid black; */
+  border-radius: 5px;
   margin-top: 40px;
-  padding: 5px 5px;
+  padding: 30px 5px;
   height: 0%;
-  /* width: 50%; */
+  width: 50%;
+  background-color:whitesmoke;
 }
-.input{
+input{
   border-radius: 10px;
   width: 200px;
-  background-color:  skyblue;
+  height: 40px;
+  margin: 10px ;
+  /* background-color:  skyblue; */
   
+}
+button{
+  font-size: medium;
+}
+
+
+button:hover{
+  background-color: blue;
 }
 
 @media only screen and (max-width:460px){

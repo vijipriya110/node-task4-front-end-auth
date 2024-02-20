@@ -7,6 +7,7 @@ function LoginPage({email, setEmail, password, setPassword}) {
 
    const handleLogin = async()=>{
     const userInfo = {
+      
         email,
         password,
     }
@@ -21,9 +22,7 @@ function LoginPage({email, setEmail, password, setPassword}) {
    const data = await res.json();
    
     localStorage.setItem("token", data.token)
-    // localStorage.removeItem("")
-  //   console.log(data.token)
-  //  console.log(userInfo)
+    
     history.push("/students")
     
    }

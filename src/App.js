@@ -1,31 +1,26 @@
-
 import { Switch,Route } from 'react-router-dom';
 import './App.css';
 import Students from './Components/Students.js';
 import AddStudents from './Components/AddStudents';
 import UpdateStudents from './Components/UpdateStudents';
-// import data from './Data/data';
 import { useEffect, useState } from 'react';
-// import Nopage from './Components/Nopage';
 import DashBoard from './Components/DashBoard';
 import { Redirect } from 'react-router-dom';
-import Teachers from './Components/Teachers.js';
-import AddTeachers from './Components/AddTeachers.js';
-import UpdateTeachers from './Components/UpdateTeachers.js';
 import LoginPage from './Components/LoginPage.js';
 import SignUp from './Components/SignUp.js';
 import Logout from './Components/Logout.js';
 import ForgotPassword from './Components/ForgotPassword.js';
 import ResetPassword from './Components/ResetPassword.js';
+import { useHistory } from 'react-router-dom';
 
 
 function App() {
   const [students, setStudents] = useState([]);
-  const [teachers, setTeachers] = useState([]);
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const history = useHistory();
 
   useEffect(()=>{
     const getStudents = async () =>{
@@ -39,25 +34,16 @@ function App() {
         // console.log(data)
           setStudents(data.data)
         }
-        getStudents();   
+        if(!localStorage.getItem("token")){
+          history.push("/login")
+        }else{
+          getStudents()
+        }
+        
     
   }, [] )
 
-  useEffect(()=>{
-    const getTeachers = async () =>{
-        const response = await fetch("https://node-task04-back-end.vercel.app/mentors/all", {
-          method:"GET",
-        }); 
-        const data = await response.json();
-        if(data){
-          setTeachers(data.data)
-        }
-    }
-    getTeachers();
-    
-  }, [])
-
-
+  
   return (
     <div className="App">
        <Switch>
@@ -73,13 +59,7 @@ function App() {
             />
           </Route>
 
-          <Route path="/teachers">
-            <Teachers
-            teachers = {teachers}
-            setTeachers ={setTeachers}
-            />
-          </Route>
-
+          
           <Route path="/details">
              <Redirect to ="/students"/>
           </Route>
@@ -91,13 +71,7 @@ function App() {
             />
          </Route>
 
-         <Route path="/addnew">
-            <AddTeachers
-            teachers = {teachers}
-            setTeachers = {setTeachers}
-            />
-         </Route>
-
+         
          <Route path="/edit/:id">
             <UpdateStudents
               students = {students}
@@ -105,13 +79,7 @@ function App() {
             />
          </Route>
 
-         <Route path="/editt/:id">
-            <UpdateTeachers
-              teachers = {teachers}
-              setTeachers ={setTeachers}
-            />
-         </Route>
-
+         
           <Route path="/login">
               <LoginPage
               email = {email}
@@ -124,7 +92,10 @@ function App() {
               <Logout/>
           </Route>
           <Route path="/forgotpassword">
-              <ForgotPassword/>
+              <ForgotPassword
+              email={email}
+              setEmail={setEmail}
+              />
           </Route>
          
           <Route path="/resetpassword">
