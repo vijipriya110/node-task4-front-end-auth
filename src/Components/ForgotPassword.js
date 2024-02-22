@@ -1,14 +1,15 @@
 import { useHistory } from 'react-router-dom'
 import Base from '../Base/Base'
 
-function ForgotPassword(email,setEmail) {
+function ForgotPassword({email,setEmail}) {
    
   const history = useHistory()
   const sendResetCode = async()=>{
     const userInfo = {
       email
           }
-  const response = await fetch("https://node-task04-back-end.vercel.app/users/sendotp", {
+          
+  const response = await fetch("https://node-task04-back-end.vercel.app/users/forgotpassword", {
   method:"POST",
   body:JSON.stringify(userInfo),
   headers :{
@@ -17,7 +18,7 @@ function ForgotPassword(email,setEmail) {
 })
 const data = await response.json()
 console.log(data)
-localStorage.setItem("OTP", data.OTP)
+// localStorage.setItem("OTP", data.OTP)
 
 history.push("/resetpassword")
   
@@ -44,6 +45,7 @@ history.push("/resetpassword")
         value = {email}
         onChange={(e)=>setEmail(e.target.value)}
         /><br></br>
+
 
 
         

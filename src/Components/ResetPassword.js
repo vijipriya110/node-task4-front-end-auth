@@ -12,7 +12,7 @@ function ResetPassword({email,setEmail,password,setPassword,confirmPassword,setC
         confirmPassword
     }
 
-    const res = await fetch(`https://node-task04-back-end.vercel.app/users/resetpassword`, {
+    const res = await fetch(`https://node-task04-back-end.vercel.app/users/reset-new-password/:token/:id`, {
     method :"POST",
     body : JSON.stringify(userInfo),
     headers:{
